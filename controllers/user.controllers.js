@@ -240,6 +240,10 @@ module.exports = {
         });
       }
 
+      await prisma.notification.deleteMany({
+        where: { user_id: id },
+      });
+
       await prisma.user.delete({
         where: { id },
       });
@@ -329,6 +333,17 @@ module.exports = {
           select: { id: true, username: true, email: true },
         });
 
+        const notification = await prisma.notification.create({
+          data: {
+            title: "Success Change Password ",
+            body: "Your password has been updated successfully.",
+            createdDate: dateFormatted(new Date()),
+            user: { connect: { id: updateUser.id } },
+          },
+        });
+
+        global.io.emit(`user-${updateUser.id}`, notification);
+
         res.status(200).json({
           status: true,
           message: "Your password has been updated successfully!",
@@ -368,7 +383,7 @@ module.exports = {
       const notifications = await prisma.notification.findMany({
         where: { user_id: userId },
       });
-      res.render("notification.ejs", {
+      res.render("./templates/notification.ejs", {
         userID: userId,
         notifications: notifications,
       });

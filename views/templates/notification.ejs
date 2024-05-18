@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <title>Notification Dropdown</title>
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-
         * {
             margin: 0;
             padding: 0;
@@ -32,7 +30,7 @@
             font-size: 32px;
             margin: 0 auto;
             text-align: center;
-            color: #605dff;
+            color: #f83cfe;
         }
 
         .notification_wrap .notification_icon .fa-bell {
@@ -40,7 +38,7 @@
         }
 
         .notification_wrap .dropdown {
-            width: 350px;
+            width: 750px;
             height: auto;
             background: #fff;
             border-radius: 5px;
@@ -48,6 +46,8 @@
             margin: 15px auto 0;
             padding: 15px;
             position: relative;
+            left: 50%;
+            transform: translateX(-50%);
             display: none;
         }
 
@@ -119,18 +119,24 @@
                     <i class="fas fa-bell"></i>
                 </div>
                 <div class="dropdown">
-                    <ul class="notification">
-                        <div class="notify_info">
-                            <p><b>
-                                    <%= notification.title %>
-                                </b></p>
-                            <p>
-                                <%= notification.body %>
-                            </p>
-                            <span class="notify_time">
-                                <%= notification.createdDate %>
-                            </span>
-                        </div>
+                    <ul class="notification" id="notification-list">
+                        <% notifications.forEach(notification=> { %>
+                            <li class="notification">
+                                <p>
+                                <div class="notify_info">
+                                    <p><b>
+                                            <%= notification.title %>
+                                        </b></p>
+                                    <p>
+                                        <%= notification.body %>
+                                    </p>
+                                    <span class="notify_time">
+                                        <%= notification.createdDate %>
+                                    </span>
+                                </div>
+                                </p>
+                            </li>
+                            <% }) %>
                     </ul>
                 </div>
             </div>
@@ -145,20 +151,23 @@
     <script>
         const socket = io();
         const notifications = document.getElementById("notification-list");
-        const userId = `<%= userID %>`;
+        const userId = "<%= userID %>";
 
         socket.on(`user-${userId}`, (notification) => {
             const item = document.createElement('li');
+            item.classList.add('notification');
             item.innerHTML = `
-                <b>${notification.title}</b>
-                <p>${notification.body}</p>
-                <span>${notification.createdDate}</span>
+            <p>
+                <div class="notify_info">
+                    <p><b>${notification.title}</b></p>
+                    <p>${notification.body}</p>
+                    <span class="notify_time">${notification.createdDate}</span>
+                </div>
+            </p>
             `;
             notifications.appendChild(item);
         });
     </script>
-
-
 </body>
 
 </html>

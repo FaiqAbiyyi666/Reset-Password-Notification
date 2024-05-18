@@ -11,19 +11,22 @@ datasource db {
 }
 
 model User {
-  id                  Int     @id @default(autoincrement())
-  username            String
-  email               String  @unique
-  password            String
-  reset_password_link String?
+  id           Int            @id @default(autoincrement())
+  username     String
+  email        String         @unique
+  password     String
+  Notification Notification[]
 
   @@map("users")
 }
 
-// model Notification {
-//   id    Int    @id @default(autoincrement())
-//   title String
-//   body  String
+model Notification {
+  id          Int    @id @default(autoincrement())
+  title       String
+  body        String
+  createdDate String
+  user        User   @relation(fields: [user_id], references: [id])
+  user_id     Int
 
-//   @@map("notifications")
-// }
+  @@map("notifications")
+}

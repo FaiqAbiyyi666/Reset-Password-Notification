@@ -1,3 +1,4 @@
+require("dotenv").config();
 let nodemailer = require("nodemailer");
 let { google } = require("googleapis");
 let ejs = require("ejs");
@@ -36,6 +37,7 @@ module.exports = {
   getHTML: (fileName, data) => {
     return new Promise((resolve, reject) => {
       const path = `${__dirname}/../views/templates/${fileName}`;
+
       ejs.renderFile(path, data, (err, data) => {
         if (err) {
           return reject(err);

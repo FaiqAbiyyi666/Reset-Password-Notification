@@ -5,6 +5,8 @@ const logger = require("morgan");
 const app = express();
 const cors = require("cors");
 const routes = require("./routes");
+const server = require("http").createServer(app);
+global.io = require("socket.io")(server);
 
 // app.use(Sentry.Handlers.requestHandler());
 // app.use(Sentry.Handlers.tracingHandler());
@@ -13,8 +15,16 @@ app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(routes);
 app.set("view engine", "ejs");
+app.use(routes);
+
+global.io.on("connection", (socket) => {
+  console.log("a user connected");
+
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
+});
 
 app.get("/", (req, res) =>
   res.json({ status: true, message: "Challenge-7!", data: null })

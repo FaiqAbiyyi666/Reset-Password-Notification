@@ -25,6 +25,7 @@
     "nodemailer": "^6.9.13",
     "path": "^0.12.7",
     "prisma": "^5.4.2",
+    "socket.io": "^4.7.5",
     "swagger-ui-express": "^5.0.0",
     "view-engine": "^1.1.1",
     "yaml": "^2.4.2"

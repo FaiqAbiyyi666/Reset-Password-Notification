@@ -20,7 +20,7 @@ Content-Type: application/json
 ### authenticate
 GET http://localhost:3000/api/v1/auth/authenticate
 # Authorization: Bearer tokentoken
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJmYWlxIiwiZW1haWwiOiIyMTA4MjAxMDIwM0BzdHVkZW50LnVwbmphdGltLmFjLmlkIiwicmVzZXRfcGFzc3dvcmRfbGluayI6bnVsbCwiaWF0IjoxNzE1ODQ4ODAyfQ.BNlfLNJJsqJbSE23XNRXu8HIBRMzOcQnlDpsFQJ2swE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJmYWlxIiwiZW1haWwiOiIyMTA4MjAxMDIwM0BzdHVkZW50LnVwbmphdGltLmFjLmlkIiwiaWF0IjoxNzE1OTg1ODgwfQ.h88OazqU8K_jYRXrqRO-C2kfPwtoe5Zz_VVjwZVT2_E
 
 ### Get All User
 GET http://localhost:3000/api/v1/users
@@ -31,11 +31,11 @@ GET http://localhost:3000/api/v1/users?search=abiyyi
 
 ### Get user by id
 GET http://localhost:3000/api/v1/users/2
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJmYWlxIiwiZW1haWwiOiIyMTA4MjAxMDIwM0BzdHVkZW50LnVwbmphdGltLmFjLmlkIiwicmVzZXRfcGFzc3dvcmRfbGluayI6bnVsbCwiaWF0IjoxNzE1ODQ4ODAyfQ.BNlfLNJJsqJbSE23XNRXu8HIBRMzOcQnlDpsFQJ2swE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJmYWlxIiwiZW1haWwiOiIyMTA4MjAxMDIwM0BzdHVkZW50LnVwbmphdGltLmFjLmlkIiwiaWF0IjoxNzE1OTg1ODgwfQ.h88OazqU8K_jYRXrqRO-C2kfPwtoe5Zz_VVjwZVT2_E
 
 ### Update profile
 PUT http://localhost:3000/api/v1/users/1/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJmYWlxIiwiZW1haWwiOiIyMTA4MjAxMDIwM0BzdHVkZW50LnVwbmphdGltLmFjLmlkIiwicmVzZXRfcGFzc3dvcmRfbGluayI6bnVsbCwiaWF0IjoxNzE1ODQ4ODAyfQ.BNlfLNJJsqJbSE23XNRXu8HIBRMzOcQnlDpsFQJ2swE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJmYWlxIiwiZW1haWwiOiIyMTA4MjAxMDIwM0BzdHVkZW50LnVwbmphdGltLmFjLmlkIiwiaWF0IjoxNzE1OTg1ODgwfQ.h88OazqU8K_jYRXrqRO-C2kfPwtoe5Zz_VVjwZVT2_E
 Content-Type: application/json
 
 {
@@ -43,5 +43,22 @@ Content-Type: application/json
 }
 
 ### Delete user
-DELETE  http://localhost:3000/api/v1/users/2
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJmYWlxIiwiZW1haWwiOiIyMTA4MjAxMDIwM0BzdHVkZW50LnVwbmphdGltLmFjLmlkIiwicmVzZXRfcGFzc3dvcmRfbGluayI6bnVsbCwiaWF0IjoxNzE1ODQ4ODAyfQ.BNlfLNJJsqJbSE23XNRXu8HIBRMzOcQnlDpsFQJ2swE
+DELETE  http://localhost:3000/api/v1/users/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJmYWlxIiwiZW1haWwiOiIyMTA4MjAxMDIwM0BzdHVkZW50LnVwbmphdGltLmFjLmlkIiwiaWF0IjoxNzE1OTg1ODgwfQ.h88OazqU8K_jYRXrqRO-C2kfPwtoe5Zz_VVjwZVT2_E
+
+### Forgot Password User
+POST http://localhost:3000/api/v1/forgot-password
+Content-Type: application/json
+
+{
+    "email" : "21082010203@student.upnjatim.ac.id"
+}
+
+### Reset Password User
+POST http://localhost:3000/api/v1/reset-password
+Content-Type: application/json
+
+{
+    "password" : "123456",
+    "passwordConfirmation": "123456"
+}

@@ -14,7 +14,7 @@ Content-Type: application/json
 
 {
     "email":"21082010203@student.upnjatim.ac.id",
-    "password":"password123"
+    "password":"123456"
 }
 
 ### authenticate

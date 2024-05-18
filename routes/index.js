@@ -7,16 +7,16 @@ const path = require("path");
 
 const user = require("./user.routes");
 
-// const swagger_path = path.resolve(__dirname, "../api-docs.yaml");
-// const file = fs.readFileSync(swagger_path, "utf-8");
+const swagger_path = path.resolve(__dirname, "../api-docs.yaml");
+const file = fs.readFileSync(swagger_path, "utf-8");
 
-// // Docs API
-// const swaggerDocument = YAML.parse(file);
-// router.use(
-//   "/api/v1/api-docs",
-//   swaggerUI.serve,
-//   swaggerUI.setup(swaggerDocument)
-// );
+// Docs API
+const swaggerDocument = YAML.parse(file);
+router.use(
+  "/api/v1/api-docs",
+  swaggerUI.serve,
+  swaggerUI.setup(swaggerDocument)
+);
 
 // API
 router.use("/api/v1", user);
